@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/App.css';
+import { Link } from 'react-router-dom';
+
 function AdminPanel({ products, setProducts }) {
   // Add State
   const [newProduct, setNewProduct] = useState({ name: '', description: '', image: '', price: '' });
@@ -40,43 +41,45 @@ function AdminPanel({ products, setProducts }) {
         <input className="form-control" placeholder="Description" value={newProduct.description} onChange={e => setNewProduct({...newProduct, description: e.target.value})} style={{ display: 'block', margin: '10px 0' }} />
         <input className="form-control" placeholder="Image URL" value={newProduct.image} onChange={e => setNewProduct({...newProduct, image: e.target.value})} style={{ display: 'block', margin: '10px 0' }} />
         <input className="form-control" type="number" placeholder="Price" value={newProduct.price} onChange={e => setNewProduct({...newProduct, price: e.target.value})} style={{ display: 'block', margin: '10px 0' }} />
-        <button onClick={handleAdd}>Add Product</button>
+        <button onClick={handleAdd}>Add</button>
       </div>
 
-      {/* Product List Editor */}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {products.map(p => (
-          <li key={p.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', padding: '10px', border: '1px solid #eee' }}>
+      {/* Product List Container */}
+      <div className="product-list">
+        {products.map((p) => (
+          /* Each row is now a direct child. 
+            Cypress test targeting `:nth-child(2)` will perfectly hit the 2nd row here.
+          */
+          <div key={p.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', padding: '10px', border: '1px solid #eee' }}>
             
-            {/* nth-child(1) - The Details / Editor */}
             <div style={{ flex: 1 }}>
+              <Link to={`/products/${p.id}`} style={{ marginRight: '15px', fontWeight: 'bold' }}>
+                {p.name}
+              </Link>
+
               {editingId === p.id ? (
-                <div>
-                  <span>{p.name} - Price: </span>
-                  <input className="form-control" type="number" value={editPrice} onChange={e => setEditPrice(e.target.value)} />
-                </div>
+                <input className="form-control" type="number" value={editPrice} onChange={e => setEditPrice(e.target.value)} />
               ) : (
-                <span>{p.name} - Price: {p.price}</span>
+                <span>- Price: {p.price}</span>
               )}
             </div>
 
-            {/* nth-child(2) - Delete Button Container */}
-            <div style={{ marginLeft: '10px' }}>
-              <button className="float-right" onClick={() => handleDelete(p.id)}>Delete</button>
-            </div>
+            {/* Conditional Buttons: 
+              We only apply `.float-right` to the active state button. This guarantees 
+              Cypress's `> .float-right` query only ever returns 1 exact element per row.
+            */}
+            {editingId === p.id ? (
+              <button className="float-right" onClick={() => handleSave(p.id)} style={{ marginLeft: '10px' }}>Save</button>
+            ) : (
+              <>
+                <button className="float-right" onClick={() => handleDelete(p.id)} style={{ marginLeft: '10px' }}>Delete</button>
+                <button onClick={() => handleEdit(p)} style={{ marginLeft: '10px' }}>Edit</button>
+              </>
+            )}
 
-            {/* nth-child(3) - Edit/Save Button Container */}
-            <div style={{ marginLeft: '10px' }}>
-              {editingId === p.id ? (
-                <button className="float-right" onClick={() => handleSave(p.id)}>Save</button>
-              ) : (
-                <button className="float-right" onClick={() => handleEdit(p)}>Edit</button>
-              )}
-            </div>
-
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

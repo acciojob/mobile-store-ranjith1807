@@ -1,184 +1,150 @@
-/* --- Global Styles --- */
+/* Global Styling */
 body {
   font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+}
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* --- Navigation (Top Card) --- */
-nav {
-  background-color: white;
-  width: 80%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
+/* Navbar */
+.navbar {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+.nav-list {
   display: flex;
   justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   gap: 40px;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
-nav a {
+.nav-list a {
   text-decoration: none;
+  font-weight: bold;
   color: #333;
-  font-size: 16px;
   text-transform: uppercase;
 }
 
-/* --- Product List Layout --- */
-.product-list-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+/* 2-Column Grid (Product List) */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.product-card {
   background: white;
-}
-
-.product-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 30px;
-  border-top: 1px solid #333; /* The distinct dark line between items */
-}
-
-/* Image on the left */
-.product-image-container {
-  width: 100px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.product-image-container img {
-  max-width: 80px;
-  max-height: 80px;
-  object-fit: contain;
-}
-
-/* Centered text in the middle */
-.product-details {
-  flex-grow: 1;
+  padding: 20px;
+  border-radius: 8px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: 1px solid #eee;
 }
-
-.product-link {
+.product-image img {
+  max-width: 100px;
+  margin-bottom: 15px;
+}
+.product-title {
   text-decoration: none;
-  color: #007bff; /* Standard link blue */
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.product-price {
-  margin: 0;
   color: #007bff;
+  font-weight: bold;
   font-size: 16px;
 }
-
-/* Buy button on the right */
-.product-action {
-  width: 100px;
-  display: flex;
-  justify-content: flex-end;
+.product-price {
+  font-weight: bold;
+  color: #333;
 }
-
 .buy-btn {
   background-color: #6c757d;
   color: white;
   border: none;
   padding: 8px 20px;
-  font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.buy-btn:hover {
-  background-color: #5a6268;
-}
-/* --- Product List Layout (2-Column Grid) --- */
-.product-list-container {
   width: 100%;
-  max-width: 900px; /* Widened slightly to fit two columns comfortably */
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Creates exactly 2 equal columns */
-  gap: 20px; /* Adds space between the cards */
 }
 
-/* Make each product look like a neat card */
-.product-item {
+/* Forms & Inputs */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Standard Buttons & Cypress Targets */
+button {
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+.btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+.float-right {
+  float: right;
+  background-color: #dc3545; /* Red for delete/save to stand out */
+}
+
+/* Admin Panel Layout */
+.admin-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.admin-row {
   display: flex;
-  flex-direction: column; /* Stacks items vertically */
   align-items: center;
   justify-content: space-between;
-  padding: 25px;
-  background-color: white;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
-  border: 1px solid #eaeaea;
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }
-
-/* Image at the top */
-.product-image-container {
-  width: 100%;
+.admin-row > div {
+  flex: 1;
+}
+.admin-row-delete, .admin-row-edit {
   display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
+  justify-content: flex-end;
+}
+.edit-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 15px;
 }
 
-.product-image-container img {
-  max-width: 120px;
-  max-height: 120px;
-  object-fit: contain;
-}
-
-/* Centered text in the middle */
-.product-details {
+/* Details Page Layout */
+.details-wrapper {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.details-wrapper > div {
   margin-bottom: 20px;
 }
-
-.product-link {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
-.product-price {
-  margin: 0;
-  color: #333;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* Buy button at the bottom */
-.product-action {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.buy-btn {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 10px 30px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%; /* Makes the button span the width of the card */
-  transition: background-color 0.2s;
-}
-
-.buy-btn:hover {
-  background-color: #5a6268;
+.details-edit input {
+  max-width: 300px;
+  margin: 0 auto;
 }

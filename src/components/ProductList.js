@@ -1,27 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/App.css';
-function ProductList({ products }) {
+
+const ProductList = ({ products }) => {
   return (
-    <div className="product-container" style={{ padding: '20px' }}>
+    <div className="list-group">
       {products.map((product) => (
-        <div key={product.id} className="product-card" style={{ borderBottom: '1px solid #ccc', padding: '15px', display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
-          <img src={product.image} alt={product.name} style={{ width: '80px' }} />
+        <div key={product.id} className="list-group-item d-flex align-items-center mb-3 shadow-sm">
+          <img src={product.image} alt={product.name} style={{ width: '100px', objectFit: 'contain' }} className="mr-4" />
           
-          <div style={{ textAlign: 'center' }}>
-            <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: '#0056b3', fontSize: '18px' }}>
-              {product.name}
+          <div className="d-flex flex-column text-center w-100">
+            <Link to={`/products/${product.id}`} className="text-primary text-decoration-none">
+              <h5 className="mb-1">{product.name}</h5>
+              <p className="mb-2">{product.description}</p>
             </Link>
-            <p style={{ color: '#0056b3' }}>Price: {product.price}</p>
+            
+            <div className="d-flex justify-content-center align-items-center mt-2">
+              <span className="text-primary mr-3" style={{ fontSize: '1.1rem' }}>Price: {product.price}</span>
+              <button className="btn btn-secondary px-4">Buy</button>
+            </div>
           </div>
-          
-          <button style={{ padding: '8px 20px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '4px' }}>
-            Buy
-          </button>
         </div>
       ))}
     </div>
   );
-}
+};
 
 export default ProductList;

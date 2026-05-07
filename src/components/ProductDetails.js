@@ -1,29 +1,35 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../styles/App.css';
-function ProductDetails({ products }) {
+
+const ProductDetails = ({ products }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  const product = products.find(p => p.id.toString() === id);
+  // Find the product by ID (parsing the URL parameter to an integer)
+  const product = products.find((p) => p.id === parseInt(id));
 
   if (!product) {
-    return <h2>Product Not Found</h2>;
+    return <div className="alert alert-danger">Product Not Found</div>;
   }
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>{product.name}</h2>
-      <img src={product.image} alt={product.name} style={{ width: '200px', margin: '20px 0' }} />
-      <p>{product.description}</p>
-      <p style={{ fontSize: '20px', fontWeight: 'bold' }}>Price: {product.price}</p>
+    <div className="card text-center p-4 shadow-sm">
+      <div className="d-flex justify-content-center mb-4">
+        <img src={product.image} alt={product.name} style={{ maxWidth: '200px' }} />
+      </div>
       
-      {/* Target for homepage navigation test */}
-      <button className="btn" onClick={() => navigate('/')} style={{ marginTop: '20px', padding: '10px 20px' }}>
-        Back to Home
-      </button>
+      <div className="card-body">
+        <h2 className="card-title text-primary">{product.name}</h2>
+        <h4 className="text-muted">{product.description}</h4>
+        <h3 className="my-4">Price: {product.price}</h3>
+        
+        {/* Cypress target for navigating back to home */}
+        <button className="btn btn-dark px-4 py-2" onClick={() => navigate('/')}>
+          Back
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default ProductDetails;

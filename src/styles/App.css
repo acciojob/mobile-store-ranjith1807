@@ -1,1 +1,184 @@
+/* --- Global Styles --- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
 
+/* --- Navigation (Top Card) --- */
+nav {
+  background-color: white;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+/* --- Product List Layout --- */
+.product-list-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  border-top: 1px solid #333; /* The distinct dark line between items */
+}
+
+/* Image on the left */
+.product-image-container {
+  width: 100px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.product-image-container img {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+/* Centered text in the middle */
+.product-details {
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.product-link {
+  text-decoration: none;
+  color: #007bff; /* Standard link blue */
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.product-price {
+  margin: 0;
+  color: #007bff;
+  font-size: 16px;
+}
+
+/* Buy button on the right */
+.product-action {
+  width: 100px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buy-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buy-btn:hover {
+  background-color: #5a6268;
+}
+/* --- Product List Layout (2-Column Grid) --- */
+.product-list-container {
+  width: 100%;
+  max-width: 900px; /* Widened slightly to fit two columns comfortably */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates exactly 2 equal columns */
+  gap: 20px; /* Adds space between the cards */
+}
+
+/* Make each product look like a neat card */
+.product-item {
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+  background-color: white;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
+  border: 1px solid #eaeaea;
+}
+
+/* Image at the top */
+.product-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.product-image-container img {
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: contain;
+}
+
+/* Centered text in the middle */
+.product-details {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.product-link {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.product-price {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Buy button at the bottom */
+.product-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buy-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Makes the button span the width of the card */
+  transition: background-color 0.2s;
+}
+
+.buy-btn:hover {
+  background-color: #5a6268;
+}

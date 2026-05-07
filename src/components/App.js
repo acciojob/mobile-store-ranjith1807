@@ -4,17 +4,15 @@ import ProductList from './ProductList';
 import ProductDetails from './ProductDetails';
 import AdminPanel from './AdminPanel';
 import '../styles/App.css'
-
-// The initial 8 products to satisfy the baseline count requirement
 const initialProducts = [
-  { id: 1, name: "Samsung Galaxy S8 64GB", description: "Black", image: "https://picsum.photos/200", price: 16303 },
-  { id: 2, name: "Samsung Galaxy S9 64GB", description: "Black", image: "https://picsum.photos/200", price: 20888 },
-  { id: 3, name: "Samsung Galaxy S8+ 64GB", description: "Black", image: "https://picsum.photos/200", price: 18701 },
-  { id: 4, name: "iPhone 12", description: "Blue", image: "https://picsum.photos/200", price: 65000 },
-  { id: 5, name: "Google Pixel 5", description: "Sorta Sage", image: "https://picsum.photos/200", price: 55000 },
-  { id: 6, name: "OnePlus 9", description: "Winter Mist", image: "https://picsum.photos/200", price: 45000 },
-  { id: 7, name: "Xiaomi Mi 11", description: "Midnight Gray", image: "https://picsum.photos/200", price: 40000 },
-  { id: 8, name: "Sony Xperia 1 III", description: "Frosted Black", image: "https://picsum.photos/200", price: 75000 },
+  { id: 1, name: "Samsung Galaxy S8 64GB", description: "Black", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 16303 },
+  { id: 2, name: "Samsung Galaxy S9 64GB", description: "Black", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 20888 },
+  { id: 3, name: "Samsung Galaxy S8+ 64GB", description: "Black", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 18701 },
+  { id: 4, name: "iPhone 12", description: "Blue", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 65000 },
+  { id: 5, name: "Google Pixel 5", description: "Sorta Sage", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 55000 },
+  { id: 6, name: "OnePlus 9", description: "Winter Mist", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 45000 },
+  { id: 7, name: "Xiaomi Mi 11", description: "Midnight Gray", image: "https://dummyimage.com/150x150/cccccc/000000.png", price: 40000 },
+  { id: 8, name: "Sony Xperia 1", description: "Frosted Black", image: "https://dummyimage.com/150x150/cccccc/000000.png&text=Mobile", price: 75000 },
 ];
 
 function App() {
@@ -22,24 +20,14 @@ function App() {
 
   return (
     <Router>
-      <div className="container mt-4">
-        {/* Navigation Navbar */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm">
-          <ul className="navbar-nav d-flex flex-row w-100 justify-content-center">
-            {/* nth-child(1) */}
-            <li className="nav-item mx-3">
-              <Link className="nav-link" to="/">HOME</Link>
-            </li>
-            {/* nth-child(2) > a (Cypress Test Target) */}
-            <li className="nav-item mx-3">
-              <Link className="nav-link" to="/admin">ADMIN</Link>
-            </li>
-          </ul>
-        </nav>
-
+      <nav style={{ display: 'flex', justifyContent: 'center', gap: '20px', padding: '20px', background: '#f8f9fa' }}>
+        <div><Link to="/">HOME</Link></div>
+        <div><Link to="/admin">ADMIN</Link></div>
+      </nav>
+      <div style={{ padding: '20px' }}>
         <Routes>
           <Route path="/" element={<ProductList products={products} />} />
-          <Route path="/products/:id" element={<ProductDetails products={products} />} />
+          <Route path="/products/:id" element={<ProductDetails products={products} setProducts={setProducts} />} />
           <Route path="/admin" element={<AdminPanel products={products} setProducts={setProducts} />} />
         </Routes>
       </div>

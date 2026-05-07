@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ProductDetails = ({ products }) => {
+const ProductDetails = ({ products, setProducts }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
-  // Find the product by ID (parsing the URL parameter to an integer)
   const product = products.find((p) => p.id === parseInt(id));
+  
+  const [price, setPrice] = useState(product ? product.price : '');
 
-  if (!product) {
-    return <div className="alert alert-danger">Product Not Found</div>;
-  }
+  if (!product) return <h2>Product Not Found</h2>;
+
+  const handleSave = () => {
+    const updated = products.map((p) => p.id === product.id ? { ...p, price: Number(price) } : p);
+    setProducts(updated);
+  };
 
   return (
-    <div className="card text-center p-4 shadow-sm">
-      <div className="d-flex justify-content-center mb-4">
-        <img src={product.image} alt={product.name} style={{ maxWidth: '200px' }} />
+    <div>
+      {/* 1st Child: Product Info */}
+      <div>
+        <img src={product.image} alt={product.name} />
+        <h2>{product.name}</h2>
+        <p>{product.description}</p>
+        <p>Price: {product.price}</p>
       </div>
-      
-      <div className="card-body">
-        <h2 className="card-title text-primary">{product.name}</h2>
-        <h4 className="text-muted">{product.description}</h4>
-        <h3 className="my-4">Price: {product.price}</h3>
-        
-        {/* Cypress target for navigating back to home */}
-        <button className="btn btn-dark px-4 py-2" onClick={() => navigate('/')}>
-          Back
-        </button>
+
+      {/* 2nd Child: Edit Input */}
+      <div>
+        <input className="form-control" type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Edit Price" />
       </div>
+
+      {/* 3rd Child: Save Button (Matches :nth-child(3) > .float-right) */}
+      <div>
+        <button className="float-right" onClick={handleSave}>Save Changes</button>
+      </div>
+
+      {/* Required .btn for returning home */}
+      <button className="btn" onClick={() => navigate('/')}>Back</button>
     </div>
   );
 };
